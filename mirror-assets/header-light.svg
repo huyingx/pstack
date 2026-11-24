@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="960" height="244" viewBox="0 0 960 244" role="img" aria-labelledby="title desc">
   <title id="title">How the pstack mirror works</title>
-  <desc id="desc">cursor/plugins/pstack is kept in sync with the mirror backnotprop/pstack. npx skills add backnotprop/pstack installs it into Claude Code, Codex, Pi, Cursor, OpenCode, and other agents.</desc>
+  <desc id="desc">cursor/plugins/pstack is kept in sync with the mirror huyingx/pstack. npx skills add huyingx/pstack installs it into Claude Code, Codex, Pi, Cursor, OpenCode, and other agents.</desc>
   <style>
     .sans { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif; }
     .mono { font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace; }
@@ -40,8 +40,8 @@
   <rect x="340" y="157" width="236" height="80" rx="12" fill="#ffffff" stroke="#5537eb" stroke-width="1.5"/>
   <rect x="340" y="157" width="236" height="80" rx="12" fill="#5537eb14"/>
   <text x="358" y="187" class="mono pri" font-size="11" letter-spacing="1.4">THIS MIRROR</text>
-  <text x="358" y="213" class="mono fg" font-size="15" font-weight="600">backnotprop/pstack</text>
-  <text x="342" y="263" class="mono mfg" font-size="11.5">npx skills add backnotprop/pstack</text>
+  <text x="358" y="213" class="mono fg" font-size="15" font-weight="600">huyingx/pstack</text>
+  <text x="342" y="263" class="mono mfg" font-size="11.5">npx skills add huyingx/pstack</text>
 
   <!-- mirror -> agent harnesses -->
   <path class="wire" d="M576 197 L610 197 C 658 197, 656 117, 704 117"/>

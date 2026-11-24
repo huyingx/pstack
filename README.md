@@ -5,7 +5,7 @@
   <a href="https://github.com/cursor/plugins/tree/main/pstack">
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="mirror-assets/header-dark.svg">
-      <img src="mirror-assets/header-light.svg" width="100%" alt="cursor/plugins/pstack is kept in sync with this mirror, backnotprop/pstack. npx skills add backnotprop/pstack installs it into Claude Code, Codex, Pi, Cursor, OpenCode, and other agents.">
+      <img src="mirror-assets/header-light.svg" width="100%" alt="cursor/plugins/pstack is kept in sync with this mirror, huyingx/pstack. npx skills add huyingx/pstack installs it into Claude Code, Codex, Pi, Cursor, OpenCode, and other agents.">
     </picture>
   </a>
 </p>
@@ -31,10 +31,32 @@
 
 ## Install
 
-pstack is a folder of plain [Agent Skills](https://agentskills.io) (`skills/<name>/SKILL.md`). You don't need [Cursor](https://github.com/cursor/plugins/tree/main/pstack). The [`skills` CLI](https://skills.sh) installs them into Claude Code, Codex, Pi, Cursor, OpenCode, and other agents:
+### Codex plugin
+
+After these plugin files are pushed to the default branch of [`huyingx/pstack`](https://github.com/huyingx/pstack), install the complete pstack skill set:
 
 ```bash
-npx skills add backnotprop/pstack
+codex plugin marketplace add huyingx/pstack
+codex plugin add pstack@huyingx
+codex plugin list --marketplace huyingx
+```
+
+To use another published branch or tag, replace the first command with `codex plugin marketplace add huyingx/pstack --ref <branch-or-tag>`.
+
+To install from a local checkout, replace the first command with:
+
+```bash
+codex plugin marketplace add /absolute/path/to/pstack
+```
+
+Type `$` in Codex and select **poteto-mode** from pstack to start a task, or **setup-pstack** to choose models and a reasoning budget. The [Codex guide](docs/harness/codex.md) covers installation and usage.
+
+### Individual skills
+
+pstack is also a folder of plain [Agent Skills](https://agentskills.io) (`skills/<name>/SKILL.md`). The [`skills` CLI](https://skills.sh) installs selected skills into Claude Code, Codex, Pi, Cursor, OpenCode, and other agents:
+
+```bash
+npx skills add huyingx/pstack
 ```
 
 The CLI shows every skill in a list you can search. Select the skills you want, then select your agents.
@@ -67,6 +89,8 @@ Skills that spawn subagents point to the Subagents section of `poteto-mode` to p
 ## What this mirror changes
 
 Many skills were Cursor-specific. They've been rewritten to work in any harness.
+
+This fork adds a Codex marketplace named `huyingx` with one `pstack` plugin. It uses the existing skill set and preserves Poteto's authorship and the Cursor upstream attribution.
 
 Codex ignores the `disable-model-invocation: true` mark that keeps most pstack skills from running unless you call them. So each marked skill also gets an `agents/openai.yaml` that tells Codex the same thing. The skill stays out of Codex's startup prompt, and `$skill` still runs it. ([#26](https://github.com/backnotprop/pstack/issues/26))
 

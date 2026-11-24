@@ -1,6 +1,6 @@
 # Syncing this mirror
 
-This repo mirrors [`cursor/plugins/pstack`](https://github.com/cursor/plugins/tree/main/pstack) and adds its own edits: the top of `README.md` and harness-neutral rewrites in some skills.
+This repo mirrors [`cursor/plugins/pstack`](https://github.com/cursor/plugins/tree/main/pstack) and adds its own edits: the top of `README.md`, harness-neutral rewrites in some skills, and Codex plugin packaging for `huyingx/pstack`.
 
 Two branches keep those edits safe:
 
@@ -33,6 +33,8 @@ Never copy Cursor's files onto `main` directly. That erases the edits.
 
    Also keep the community fixes listed under "What this mirror changes" in `README.md`, unless Cursor has shipped the same fix. Then take Cursor's version and drop the fix from that list.
 
+   Keep `.agents/plugins/marketplace.json`, `docs/harness/codex.md`, `GLOSSARY.md`, and `tests/` as mirror additions. The `huyingx` marketplace publishes one `pstack` plugin from `./`, using the existing root `plugin.json` and `skills/`. Keep the root plugin version aligned with `.cursor-plugin/plugin.json`, its repository URL pointed at `huyingx/pstack`, and the author's attribution intact. Codex discovers the existing `skills/` directory automatically.
+
    Carry only bug fixes. A PR that changes what a skill tells the agent, like a new style rule, belongs upstream at cursor/plugins. Decline it here.
 
 3. Refresh the bundled Comment Sicko prompt, then check that no new Cursor-only instructions arrived:
@@ -50,9 +52,19 @@ Never copy Cursor's files onto `main` directly. That erases the edits.
    python3 mirror-assets/codex-policy.py
    ```
 
-4. Add a row to the top of `SYNC-LOG.md` with the date, the upstream version, and the result. Add one also when nothing changed upstream.
+4. Check the Codex policy and plugin packaging from the repository root:
 
-5. Push both branches:
+   ```bash
+   python3 mirror-assets/codex-policy.py --check
+   python3 -m unittest discover -s tests -p 'test_*.py'
+   python3 tests/codex_plugin_smoke.py
+   ```
+
+   The smoke check requires the Codex CLI and uses temporary, isolated user configuration to install this checkout. After publishing, check the remote instructions in `docs/harness/codex.md` against the branch or tag that contains the marketplace files.
+
+5. Add a row to the top of `SYNC-LOG.md` with the date, the upstream version, and the result. Add one also when nothing changed upstream.
+
+6. Push both branches:
 
    ```bash
    git push origin main upstream
